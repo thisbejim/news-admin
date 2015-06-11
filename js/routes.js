@@ -2,10 +2,8 @@ var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
 
-var AppActions = require("./actions/AppActions");
-var AppStore = require("./stores/AppStore");
-var Submission = require("./components/SubmitComponent")
-
+var Submission = require("./SubmitComponents/SubmitComponent");
+var Review = require("./ReviewComponents/ReviewComponent");
 
 // Home Controller
 var Home = React.createClass({
@@ -19,7 +17,18 @@ var Home = React.createClass({
 // Home Controller
 var SubmissionPage = React.createClass({
   render () {
-    return <Submission />;
+    return (
+      <Submission />
+    );
+  }
+});
+  
+
+var ReviewPage = React.createClass({
+  render () {
+    return (
+      <Review />
+    );
   }
 });
 
@@ -27,6 +36,7 @@ var routes = (
   <Route handler={App}>
     <Route path="/" handler={Home}/>
     <Route path="/submit" handler={SubmissionPage}/>
+    <Route path="/review" handler={ReviewPage}/>
   </Route>
 ); 
 
