@@ -12,22 +12,27 @@ var ArticleSelect = React.createClass({
     var video = this.props.articleType == "Video" ? btn.active : btn.disabled
     
     return (
-      <div className="row">
         <div className="row">
-          <div className="col-md-12"> <h4>Article Type</h4></div>  
-        </div>
-        <div className="row">
-          <div className="col-md-4"> 
-            <div className={standard} onClick={this._standard}>Standard</div>
-          </div>
-        <div className="col-md-4"> 
-          <div className={listicle} onClick={this._listicle}>Listicle</div>
-        </div> 
-        <div className="col-md-4"> 
-          <div className={video} onClick={this._video}>Video</div>
+          <div className="col-md-12">
+      
+            <div className="row center-align">
+              <div className="col-md-12"> <h4>Article Type</h4></div>  
+            </div>
+      
+            <div className="row center-align">
+              <div className="col-md-4"> 
+                <div className={standard} onClick={this._standard}>Standard</div>
+              </div>
+              <div className="col-md-4"> 
+                <div className={listicle} onClick={this._listicle}>Listicle</div>
+              </div> 
+              <div className="col-md-4"> 
+                <div className={video} onClick={this._video}>Video</div>
+              </div>
+            </div>
+
         </div>
       </div>
-    </div>
     );
   },
   _standard: function(){

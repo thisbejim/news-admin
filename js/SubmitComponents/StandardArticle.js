@@ -20,59 +20,67 @@ var Standard = React.createClass({
     var ready = this.props.readyToSubmit == false ? "Finished" : "Edit";
     var submitStyle = this.props.readyToSubmit == false ? btn.disabled : btn.active;
     var readyStyle = this.props.readyToSubmit == false ? btn.active : btn.red;
-    var imgBtnStyle = this.props.imgAccepted == false ? btn.red : btn.active;
-
+    var imgBtnStyle = this.props.imgAccepted == false ? btn.imgRed : btn.imgActive;
+    var imageText = this.props.imgText == "" ? "" : <div className="row center-align">
+                                                      <div className="lg-blank-divide"></div>
+                                                      <div className="col-md-12">
+                                                        <p>{this.props.imgText}</p>
+                                                      </div>
+                                                    </div>;
     return (
     <div className="row">
-    <form className="col-md-12">
+    <div className="col-md-12">
       
-      <div className="row">
-        <div className="col-md-2">
-          <div className="file-field">
-            <div className={imgBtnStyle}>
-              <span>Image</span>
-            <input onChange={this._handlePhoto} type="file"/>
-          </div>
-        </div>
-      </div>
-      <div className="col-md-6 valign-wrapper">
-          <p className="valign">{this.props.imgText}</p>
-        </div>
+      <div className="row center-align">
+          <div className="col-md-12">
+            <div className={imgBtnStyle} style={animate.pulse} onClick={this._openUpload}></div>
+           </div>
       </div>
       
-      <div className="row">
-        <div className="col-md-3">
+      
+      {imageText}
+      
+      <div className="row center-align">
+        <div className="col-md-12">
         <img src={this.props.imgDisplay}> </img>
         </div>
       </div>
   
-        <div className="row">
-           <div className="lg-blank-divide"></div>
+      <div className="row center-align">
+        <div className="lg-blank-divide"></div>
+          <h5>Tagline</h5>
           <div className="input-field col-md-12">
-            
             <textarea id="tagline" className="materialize-textarea" onChange={this._handleTaglineText} value={this.props.taglineText}></textarea>
-      <label htmlFor="tagline"><h5>Tagline</h5></label>
           </div>
         </div>
 
-        <div className="row">
-          <div className="lg-blank-divide"></div>
+      <div className="row center-align">
+        <div className="lg-blank-divide"></div>
+          <h5>Story</h5>
           <div className="input-field col-md-12">
             <textarea id="body" className="materialize-textarea" onChange={this._handleBodyText} value={this.props.articleBodyText}></textarea>
-            <label htmlFor="tagline"><h5>Story</h5></label>
           </div>
         </div>
-    </form>
+    </div>
+      
       <div className="row">
-      <div className="col-md-8">
+      <div className="col-md-6">
       </div>
-      <div className="col-md-2">
+      <div className="col-md-3">
       <div className={readyStyle} onClick={this._ready}>{ready}</div>
       </div>
-      <div className="col-md-2">
+      <div className="col-md-3">
       <div className={submitStyle} onClick={this._submit}>Submit</div>
       </div>
       </div>
+      
+      
+      <div className="row">
+        <div className="col-md-12">
+          <input id="fuck" onChange={this._handlePhoto} style={styles.fuck} type="file"/>
+        </div>
+      </div>
+      
   </div>
     );
   },
@@ -115,14 +123,36 @@ var Standard = React.createClass({
   },
   _ready: function(){
     SubmitActions.toggleReadyToSubmit();
+  },
+  _openUpload: function(){
+    document.getElementById('fuck').click()
   }
 });
 
 var btn = {
   active: "waves-effect waves-light btn",
   disabled: "waves-effect waves-light btn disabled",
-  red: "waves-effect waves-light btn red" 
+  red: "waves-effect waves-light btn red",
+  imgRed: "btn-floating red",
+  imgActive: "btn-floating",
 }
+var styles = {
+  fuck: {
+    opacity:"0"
+  }
+}
+
+var pulseKeyframes = Radium.keyframes({
+  '0%': {transform: 'scale(1,1)'},
+  '50%': {transform: 'scale(1.2,1.2)'},
+  '100%': {transform: 'scale(1,1)'},
+});
+
+var animate = {
+  pulse: {
+    animation: pulseKeyframes + ' 3s ease 0s infinite',
+  }
+};
   
 
 

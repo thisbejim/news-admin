@@ -1,17 +1,27 @@
 var React = require('react');
 var Radium = require('radium');
-var AppActions = require('../actions/SubmitActions');
+var SubmitActions = require('../actions/SubmitActions');
+var SubmissionComponent = require('./SubmissionComponent');
 
 var SubmissionList = React.createClass({
   propTypes: {
-      submissionList: React.PropTypes.string,
+      submissionList: React.PropTypes.array
   },
   render () {
-
+    var submissions = []
+    for(var i in this.props.submissionList){
+      if (this.props.submissionList[i].approved == false){
+      submissions.push(
+        <SubmissionComponent key={this.props.submissionList[i].id} submission={this.props.submissionList[i]} />
+      );
+      }
+    }
     return (
     <div className="row">
-    <div className="col-md-12">
-      {this.props.submissionList}
+    <div className="col-md-6">
+    </div>
+    <div className="col-md-6">
+      {submissions}
     </div>
     </div>
     );

@@ -9,4 +9,11 @@ module.exports = keyMirror({
   SUBMIT_ARTICLE: null,
   IMAGE_UPLOADED: null,
   DISPLAY_IMG: null,
+  GET_SUBMISSION_LIST: null,
+  REVIEW_SUBMISSION: null,
+  HANDLE_BODY_REVIEW: null,
+  HANDLE_TAGLINE_REVIEW: null,
+  UNASSIGN: null,
+  SUBMIT_REVIEW: null,
+  REJECT: null,
 });

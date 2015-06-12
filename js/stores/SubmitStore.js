@@ -92,13 +92,19 @@ s3.putObject(params, function (perr, pres) {
     tag_line: tagline,
     body_text: bodyText,
     img_url: 'https://s3-us-west-2.amazonaws.com/'+AWS_Bucket+'/'+key,
-    approved: false
+    approved: false,
+    timeSubmitted: new Date().getTime(),
+    timeOfApproval: 0,
+    approvalOne: "standby",
+    approvalTwo: "standby",
+    approvalThree: "standby",
+    underReview: false
   });
 }
 
 function setImageAccepted(i){
   imgAccepted = i;
-  imgText = i == false ? "Image was not the correct dimensions" : "Success!";
+  imgText = i == false ? "Image was not the correct dimensions" : "";
 }
 
 function displayImage(i){

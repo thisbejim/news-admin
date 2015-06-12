@@ -30,19 +30,19 @@ var Submit = React.createClass({
         taglineText={this.state.taglineText}/>
     }
     return (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-12">
       
-    <div className="row">
-      <div className="col-md-12">
-        <div className="row">
-          <div className="col-md-12"> <h3>Submit an article</h3></div>  
-        </div>
         
-      <ArticleSelect articleType={this.state.articleType}/>
+          <ArticleSelect articleType={this.state.articleType}/>
       
-      {articleForm}
+          {articleForm}
       
+      
+      </div>
+    </div>
   </div>
-</div>
     );
   },
   _onChange: function() {
