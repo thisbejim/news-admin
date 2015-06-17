@@ -20,7 +20,11 @@ var Standard = React.createClass({
     var ready = this.props.readyToSubmit == false ? "Finished" : "Edit";
     var submitStyle = this.props.readyToSubmit == false ? btn.disabled : btn.active;
     var readyStyle = this.props.readyToSubmit == false ? btn.active : btn.red;
+    
     var imgBtnStyle = this.props.imgAccepted == false ? btn.imgRed : btn.imgActive;
+    var imgBtnAnimate = this.props.imgAccepted == false ? animate.pulse : animate.none;
+    var imgBtnIcon = this.props.imgAccepted == false ? "mdi-content-add" : "mdi-action-done";
+    
     var imageText = this.props.imgText == "" ? "" : <div className="row center-align">
                                                       <div className="lg-blank-divide"></div>
                                                       <div className="col-md-12">
@@ -29,13 +33,13 @@ var Standard = React.createClass({
                                                     </div>;
     return (
     <div className="row">
-    <div className="col-md-12">
+    <div className="col-md-12">  
       
       <div className="row center-align">
           <div className="col-md-12">
-            <div className={imgBtnStyle} style={animate.pulse} onClick={this._openUpload}></div>
+            <div className={imgBtnStyle} style={imgBtnAnimate} onClick={this._openUpload}><i className={imgBtnIcon}></i></div>
            </div>
-      </div>
+      </div> 
       
       
       {imageText}
@@ -63,7 +67,9 @@ var Standard = React.createClass({
         </div>
     </div>
       
-      <div className="row">
+      {/* Medium Style */}
+      
+      <div className="visible-md visible-lg row">
       <div className="col-md-6">
       </div>
       <div className="col-md-3">
@@ -74,10 +80,26 @@ var Standard = React.createClass({
       </div>
       </div>
       
+      {/* Small Style */}
+      
+      <div className="visible-sm visible-xs row center-align">
+        <div className="row">
+          <div className="col-sm-12">
+            <div className={readyStyle} onClick={this._ready}>{ready}</div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
+            <div className={submitStyle} onClick={this._submit}>Submit</div>
+          </div>
+        </div>
+      </div>
+      
+      
       
       <div className="row">
         <div className="col-md-12">
-          <input id="fuck" onChange={this._handlePhoto} style={styles.fuck} type="file"/>
+          <input id="fileUpload" onChange={this._handlePhoto} style={styles.fileUpload} type="file"/>
         </div>
       </div>
       
@@ -125,7 +147,7 @@ var Standard = React.createClass({
     SubmitActions.toggleReadyToSubmit();
   },
   _openUpload: function(){
-    document.getElementById('fuck').click()
+    document.getElementById('fileUpload').click()
   }
 });
 
@@ -137,7 +159,7 @@ var btn = {
   imgActive: "btn-floating",
 }
 var styles = {
-  fuck: {
+  fileUpload: {
     opacity:"0"
   }
 }
@@ -151,6 +173,8 @@ var pulseKeyframes = Radium.keyframes({
 var animate = {
   pulse: {
     animation: pulseKeyframes + ' 3s ease 0s infinite',
+  },
+  none: {
   }
 };
   

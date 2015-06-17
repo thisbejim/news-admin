@@ -13,7 +13,10 @@ var ArticleSelect = React.createClass({
     
     return (
         <div className="row">
-          <div className="col-md-12">
+      
+      
+          {/* Medium Style */}
+          <div className="visible-md visible-lg col-md-12">
       
             <div className="row center-align">
               <div className="col-md-12"> <h4>Article Type</h4></div>  
@@ -32,6 +35,38 @@ var ArticleSelect = React.createClass({
             </div>
 
         </div>
+      
+      
+      {/* Small Style */}
+      
+      <div className="visible-sm visible-xs col-sm-12">
+      
+            <div className="row center-align">
+              <div className="col-sm-12"> <h4>Article Type</h4></div>  
+            </div>
+      
+            <div className="row center-align">
+              <div className="col-sm-12"> 
+                <div className={standard} onClick={this._standard}>Standard</div>
+              </div>
+            </div>
+      
+          <div className="row center-align">
+              <div className="col-sm-12"> 
+                <div className={listicle} onClick={this._listicle}>Listicle</div>
+              </div> 
+          </div>
+      
+          <div className="row center-align">
+              <div className="col-sm-12"> 
+                <div className={video} onClick={this._video}>Video</div>
+              </div>
+            </div>
+
+        </div>
+    
+      
+      
       </div>
     );
   },

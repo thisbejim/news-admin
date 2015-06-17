@@ -14,19 +14,28 @@ var _ = require('underscore');
 
 
 // config
-var ref = new Firebase("https://newstestapp.firebaseio.com/");
 
-var aws_access_key_id = "AKIAI3BOZTS6TEOBUPAA";
-var aws_secret_access_key = "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";
+var ref = new Firebase("https://newstestapp.firebaseio.com/");
+var AWS = require('aws-sdk');
+var AWSRef = ref.child("AWS/AWS");
+var aws_access_key_id;
+var aws_secret_access_key;
+var s3;  
 var AWS_Bucket = 'newsadmintestbucket'
 var AWS_REGION = 'us-west-2';
-var AWS = require('aws-sdk'); 
-AWS.config.update({
+ 
+
+AWSRef.once("value", function(data) {
+  var results = data.val();
+  aws_access_key_id = results.key;
+  aws_secret_access_key = results.access;
+  AWS.config.update({
     accessKeyId: aws_access_key_id,
     secretAccessKey: aws_secret_access_key,
     region: AWS_REGION
-});
-var s3 = new AWS.S3({params: {Bucket: AWS_Bucket}}); 
+  });
+  s3 = new AWS.S3({params: {Bucket: AWS_Bucket}}); 
+}); 
  
 
 // standard functions

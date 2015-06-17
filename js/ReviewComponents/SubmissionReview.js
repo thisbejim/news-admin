@@ -32,7 +32,7 @@ var SubmissionReview = React.createClass({
     <div className="row">
     <div className="col-md-12">
       
-      <div className="row">
+      <div className="row center-align">
         <h5>Feature Image</h5>
         <div className="lg-blank-divide"></div>
         <img src={submission.img_url}> </img>
@@ -55,7 +55,9 @@ var SubmissionReview = React.createClass({
         </div>
       </div>
       
-      <div className="row center-align">
+       {/* Medium Style */}
+      
+      <div className="row visible-md visible-lg center-align">
         <div className="col-md-4">
           <div className={btn.approve} onClick={this._submitReview}>Approve</div>
         </div>
@@ -66,7 +68,7 @@ var SubmissionReview = React.createClass({
           <div className={btn.unassign} onClick={this._unassign}>Unassign</div>
         </div>
       </div>
-      <div className="row center-align">
+      <div className="row visible-md visible-lg center-align">
         <div className="col-md-3">
         </div>
         <div className="col-md-2">
@@ -79,6 +81,42 @@ var SubmissionReview = React.createClass({
           <div className={approvalThreeStyle}></div>
         </div>
       </div>
+      
+      {/* Small Style */}
+      
+      <div className="row visible-sm visible-xs center-align">
+        <div className="col-xs-4">
+          <div className={approvalOneStyle}></div>
+        </div>
+        <div className="col-xs-4">
+          <div className={approvalTwoStyle}></div>
+        </div>
+        <div className="col-xs-4">
+          <div className={approvalThreeStyle}></div>
+        </div>
+      </div>
+      
+      <div className="row visible-sm visible-xs center-align">
+        <div className="blank-divide"></div>
+        <div className="row">
+          <div className="col-sm-12">
+            <div className={btn.approve} onClick={this._submitReview}>Approve</div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
+            <div className={btn.reject} onClick={this._reject}>Reject</div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12">
+            <div className={btn.unassign} onClick={this._unassign}>Unassign</div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
       
     </div>
     </div>
