@@ -56,7 +56,22 @@ var Standard = React.createClass({
       <div className="row visible-sm visible-xs">
         <div className="col-xs-12">
           <img src={this.props.imgDisplay} className="img-responsive center-block"> </img>
-        </div> 
+        </div>
+      </div>
+      
+      <div className="row">
+      <div className="col-md-4">
+      </div>
+      <div className="center-block col-md-4">
+        <select onChange={this._handleCategorySelect} className="browser-default">
+          <option value="News">News</option>
+          <option value="Movies">Movies</option>
+          <option value="Gaming">Gaming</option>
+          <option value="Culture">Culture</option>
+          <option value="Politics">Politics</option>
+        </select>
+      
+      </div>
       </div>
   
       <div className="row center-align">
@@ -149,8 +164,11 @@ var Standard = React.createClass({
   _submit: function(){
     if (this.props.readyToSubmit == true){
       console.log(this.props.imgDisplay);
-      SubmitActions.submitArticle(this.props.articleBodyText, this.props.taglineText, this.props.imgDisplay);
+      SubmitActions.submitArticle(this.props.articleBodyText, this.props.taglineText, this.props.imgDisplay, this.props.articleCategory);
     }
+  },
+  _handleCategorySelect: function(event) {
+    SubmitActions.handleCategorySelect(event.target.value);
   },
   _ready: function(){
     SubmitActions.toggleReadyToSubmit();

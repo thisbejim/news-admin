@@ -27,7 +27,7 @@ var Submit = React.createClass({
       case "Standard":
         articleForm = <Standard readyToSubmit={this.state.readyToSubmit} articleBodyText={this.state.articleBodyText} 
         imgAccepted={this.state.imgAccepted} imgText={this.state.imgText} imgDisplay={this.state.imgDisplay} 
-        taglineText={this.state.taglineText}/>
+        taglineText={this.state.taglineText} articleCategory={this.state.articleCategory}/>
     }
     return (
     <div className="container">

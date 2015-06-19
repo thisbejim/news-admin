@@ -29,12 +29,13 @@ var SubmitActions = {
       text: text
     });
   },
-  submitArticle: function(bodytext, tagline, image) {
+  submitArticle: function(bodytext, tagline, image, articleCategory) {
     AppDispatcher.dispatch({
       actionType: AppConstants.SUBMIT_ARTICLE,
       bodyText: bodytext,
       tagline: tagline,
-      image: image
+      image: image,
+      articleCategory: articleCategory,
     });
   },
   handleImageUpload: function(accepted) {
@@ -49,6 +50,11 @@ var SubmitActions = {
       img: img
     });
   },
+  handleCategorySelect: function(value) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.HANDLE_CATEGORY_SELECT,
+      value: value
+    });
+  }
 };
-
 module.exports = SubmitActions;

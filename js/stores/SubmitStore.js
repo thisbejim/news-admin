@@ -56,7 +56,7 @@ function randomString(length, chars) {
 var readyToSubmit = false;
 var articleType = "Standard";
 var imgAccepted = false;
-
+var articleCategory = "";
 // Content
 var taglineText = ""
 var articleBodyText = "";
@@ -73,14 +73,26 @@ function editBodyText(new_text){
 }
 
 function editTaglineText(new_text){
-  taglineText = new_text;
+  console.log(new_text.length);
+  if(new_text.length >= 80){
+    var text = new_text.slice(-1);
+    taglineText = taglineText.slice(0,-1);
+    taglineText = taglineText+text
+  } else {
+    taglineText = new_text;
+  }
+}
+
+function handleCategory(value){
+  console.log(value)
+  articleCategory = value;
 }
 
 function changeArticleType(type){
   articleType = type;
 }
 
-function submitArticle(bodyText, tagline, image){
+function submitArticle(bodyText, tagline, image, articleCategory){
   
 var key = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
 var data = image.replace(/^data:image\/\w+;base64,/, "");
@@ -109,6 +121,7 @@ s3.putObject(params, function (perr, pres) {
     approvalThree: "standby",
     underReview: false,
     clicks: 0,
+    articleCategory: articleCategory,
   });
 }
 
@@ -133,6 +146,7 @@ var AppStore = assign({}, EventEmitter.prototype, {
       taglineText: taglineText,
       imgText: imgText,
       imgDisplay: imgDisplay,
+      articleCategory: articleCategory,
     }
   },
   emitChange: function() {
@@ -175,7 +189,7 @@ AppDispatcher.register(function(action) {
       AppStore.emitChange();
       break;
     case AppConstants.SUBMIT_ARTICLE:
-      submitArticle(action.bodyText, action.tagline, action.image);
+      submitArticle(action.bodyText, action.tagline, action.image, action.articleCategory);
       AppStore.emitChange();
       break;
     case AppConstants.IMAGE_UPLOADED:
@@ -184,6 +198,10 @@ AppDispatcher.register(function(action) {
       break;
     case AppConstants.DISPLAY_IMG:
       displayImage(action.img);
+      AppStore.emitChange();
+      break;
+    case AppConstants.HANDLE_CATEGORY_SELECT:
+      handleCategory(action.value);
       AppStore.emitChange();
       break;
 

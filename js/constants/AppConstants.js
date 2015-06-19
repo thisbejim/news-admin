@@ -16,4 +16,5 @@ module.exports = keyMirror({
   UNASSIGN: null,
   SUBMIT_REVIEW: null,
   REJECT: null,
+  HANDLE_CATEGORY_SELECT: null,
 });
