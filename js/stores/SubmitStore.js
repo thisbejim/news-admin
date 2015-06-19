@@ -8,7 +8,7 @@ var AppConstants = require('../constants/AppConstants');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var _ = require('underscore');
 
-// additions 
+// additions
 var Firebase = require('firebase')
 var _ = require('underscore');  
 
@@ -20,7 +20,7 @@ var AWS = require('aws-sdk');
 var AWSRef = ref.child("AWS/AWS");
 var aws_access_key_id;
 var aws_secret_access_key;
-var s3;  
+var s3;
 var AWS_Bucket = 'newsadmintestbucket'
 var AWS_REGION = 'us-west-2';
  
@@ -35,7 +35,7 @@ AWSRef.once("value", function(data) {
     region: AWS_REGION
   });
   s3 = new AWS.S3({params: {Bucket: AWS_Bucket}}); 
-}); 
+});
  
 
 // standard functions
@@ -60,10 +60,10 @@ var imgAccepted = false;
 // Content
 var taglineText = ""
 var articleBodyText = "";
-var imgText = "Please upload an image with 300x300 dimensions."
+var imgText = "Please upload an image with dimensions of 600x600 or more."
 var imgDisplay = "";
 
-// dispatch functions                                   
+// dispatch functions
 function toggleReadyToSubmit() {
   readyToSubmit = readyToSubmit == true ? false : true;
 }
@@ -107,13 +107,14 @@ s3.putObject(params, function (perr, pres) {
     approvalOne: "standby",
     approvalTwo: "standby",
     approvalThree: "standby",
-    underReview: false
+    underReview: false,
+    clicks: 0,
   });
 }
 
 function setImageAccepted(i){
   imgAccepted = i;
-  imgText = i == false ? "Image was not the correct dimensions" : "";
+  imgText = i == false ? "Image dimensions not over 600x600" : "";
 }
 
 function displayImage(i){

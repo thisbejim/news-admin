@@ -33,21 +33,30 @@ var Standard = React.createClass({
                                                     </div>;
     return (
     <div className="row">
-    <div className="col-md-12">  
+    <div className="col-md-12">
       
       <div className="row center-align">
           <div className="col-md-12">
             <div className={imgBtnStyle} style={imgBtnAnimate} onClick={this._openUpload}><i className={imgBtnIcon}></i></div>
            </div>
-      </div> 
+      </div>
       
       
       {imageText}
       
-      <div className="row center-align">
+      {/* Medium Image Style */}
+      <div className="row visible-md visible-lg">
         <div className="col-md-12">
-        <img src={this.props.imgDisplay}> </img>
+        <img src={this.props.imgDisplay} className="img-responsive center-block"> </img>
         </div>
+      </div>
+      
+      {/* Small Image Style */}
+      
+      <div className="row visible-sm visible-xs">
+        <div className="col-xs-12">
+          <img src={this.props.imgDisplay} className="img-responsive center-block"> </img>
+        </div> 
       </div>
   
       <div className="row center-align">
@@ -114,9 +123,9 @@ var Standard = React.createClass({
     if ((file = event.target.files[0])) {
        
         image = new Image();
-        
-        image.onload = function() { 
-          if (this.width == 300 & this.height == 300){
+         
+        image.onload = function() {
+          if (this.width >= 600 & this.height >= 600){
             SubmitActions.handleImageUpload(true);
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -126,7 +135,7 @@ var Standard = React.createClass({
             } else {
               SubmitActions.handleImageUpload(false);
             }
-          }; 
+          };
     
         image.src = _URL.createObjectURL(file);
     }

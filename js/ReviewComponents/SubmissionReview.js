@@ -35,7 +35,7 @@ var SubmissionReview = React.createClass({
       <div className="row center-align">
         <h5>Feature Image</h5>
         <div className="lg-blank-divide"></div>
-        <img src={submission.img_url}> </img>
+        <img src={submission.img_url} className="img-responsive center-block"> </img>
       </div>
       
        
