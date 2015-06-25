@@ -4,12 +4,13 @@ var Route = Router.Route;
 
 var Submission = require("./SubmitComponents/SubmitComponent");
 var Review = require("./ReviewComponents/ReviewComponent");
+var Login = require("./LoginComponents/LoginComponent");
 
 // Home Controller
 var Home = React.createClass({
   render () {
-    return ( 
-      <h3>Home</h3> 
+    return (
+      <Login />
     );
   }
 });

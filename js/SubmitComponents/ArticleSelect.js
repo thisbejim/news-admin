@@ -23,13 +23,13 @@ var ArticleSelect = React.createClass({
             </div>
       
             <div className="row center-align">
-              <div className="col-md-4"> 
+              <div className="col-md-4">
                 <div className={standard} onClick={this._standard}>Standard</div>
               </div>
-              <div className="col-md-4"> 
+              <div className="col-md-4">
                 <div className={listicle} onClick={this._listicle}>Listicle</div>
               </div> 
-              <div className="col-md-4"> 
+              <div className="col-md-4">
                 <div className={video} onClick={this._video}>Video</div>
               </div>
             </div>
@@ -46,19 +46,19 @@ var ArticleSelect = React.createClass({
             </div>
       
             <div className="row center-align">
-              <div className="col-sm-12"> 
+              <div className="col-sm-12">
                 <div className={standard} onClick={this._standard}>Standard</div>
               </div>
             </div>
       
           <div className="row center-align">
-              <div className="col-sm-12"> 
+              <div className="col-sm-12">
                 <div className={listicle} onClick={this._listicle}>Listicle</div>
               </div> 
           </div>
       
           <div className="row center-align">
-              <div className="col-sm-12"> 
+              <div className="col-sm-12">
                 <div className={video} onClick={this._video}>Video</div>
               </div>
             </div>

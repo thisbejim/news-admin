@@ -1,6 +1,8 @@
 var keyMirror = require('react/lib/keyMirror');
 
 module.exports = keyMirror({
+  
+  // Submission Constants
   READY_SUBMIT: null,
   SUBMIT: null,
   HANDLE_BODY_TEXT: null,
@@ -9,6 +11,8 @@ module.exports = keyMirror({
   SUBMIT_ARTICLE: null,
   IMAGE_UPLOADED: null,
   DISPLAY_IMG: null,
+  
+  // Review Constants
   GET_SUBMISSION_LIST: null,
   REVIEW_SUBMISSION: null,
   HANDLE_BODY_REVIEW: null,
@@ -17,4 +21,9 @@ module.exports = keyMirror({
   SUBMIT_REVIEW: null,
   REJECT: null,
   HANDLE_CATEGORY_SELECT: null,
+  
+  //Login Constants
+  HANDLE_USERNAME: null,
+  HANDLE_PASSWORD: null,
+  HANDLE_LOGIN_SELECT: null
 });

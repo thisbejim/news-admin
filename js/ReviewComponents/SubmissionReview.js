@@ -43,7 +43,7 @@ var SubmissionReview = React.createClass({
         <h5>Tagline</h5>
         <div className="lg-blank-divide"></div>
         <div className="input-field col-md-12">
-          <textarea id="tagline" className="materialize-textarea" onChange={this._handleTaglineEdit} value={submission.tag_line}></textarea>
+          <textarea id="tagline" className="materialize-textarea flow-text" onChange={this._handleTaglineEdit} value={submission.tag_line}></textarea>
         </div>
       </div>
       
@@ -51,7 +51,7 @@ var SubmissionReview = React.createClass({
         <h5>Story</h5>
         <div className="lg-blank-divide"></div>
         <div className="input-field col-md-12">
-          <textarea id="body" className="materialize-textarea" onChange={this._handleBodyEdit} value={submission.body_text}></textarea>
+          <textarea id="body" className="materialize-textarea flow-text" onChange={this._handleBodyEdit} value={submission.body_text}></textarea>
         </div>
       </div>
       

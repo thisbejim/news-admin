@@ -31,7 +31,7 @@ var SubmissionList = React.createClass({
 var btn = {
   active: "waves-effect waves-light btn",
   disabled: "waves-effect waves-light btn disabled",
-  red: "waves-effect waves-light btn red" 
+  red: "waves-effect waves-light btn red"
 }
   
 

@@ -1,8 +1,10 @@
 var React = require('react');
 var Radium = require('radium');
+var Router = require('react-router');
 var SubmitActions = require('../actions/SubmitActions');
 
 var Standard = React.createClass({
+  mixins : [Router.Navigation],
   propTypes: {
       readyToSubmit: React.PropTypes.bool,
       text: React.PropTypes.string,
@@ -23,7 +25,7 @@ var Standard = React.createClass({
     
     var imgBtnStyle = this.props.imgAccepted == false ? btn.imgRed : btn.imgActive;
     var imgBtnAnimate = this.props.imgAccepted == false ? animate.pulse : animate.none;
-    var imgBtnIcon = this.props.imgAccepted == false ? "mdi-content-add" : "mdi-action-done";
+    var imgBtnIcon = this.props.imgAccepted == false ? "add" : "done";
     
     var imageText = this.props.imgText == "" ? "" : <div className="row center-align">
                                                       <div className="lg-blank-divide"></div>
@@ -37,7 +39,7 @@ var Standard = React.createClass({
       
       <div className="row center-align">
           <div className="col-md-12">
-            <div className={imgBtnStyle} style={imgBtnAnimate} onClick={this._openUpload}><i className={imgBtnIcon}></i></div>
+            <div className={imgBtnStyle} style={imgBtnAnimate} onClick={this._openUpload}><i className="material-icons">{imgBtnIcon}</i></div>
            </div>
       </div>
       
@@ -165,6 +167,7 @@ var Standard = React.createClass({
     if (this.props.readyToSubmit == true){
       console.log(this.props.imgDisplay);
       SubmitActions.submitArticle(this.props.articleBodyText, this.props.taglineText, this.props.imgDisplay, this.props.articleCategory);
+      this.transitionTo('/');
     }
   },
   _handleCategorySelect: function(event) {

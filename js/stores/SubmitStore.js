@@ -56,7 +56,7 @@ function randomString(length, chars) {
 var readyToSubmit = false;
 var articleType = "Standard";
 var imgAccepted = false;
-var articleCategory = "";
+var articleCategory = "News";
 // Content
 var taglineText = ""
 var articleBodyText = "";
