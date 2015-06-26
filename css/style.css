@@ -1,23 +1,23 @@
 .blank-divide {
-  margin: 10px;
+	margin: 10px;
 }
 
 .lg-blank-divide {
-  padding: 30px
+	padding: 30px
 }
 
 .btn-margin {
-  margin: 10px;
+	margin: 10px;
 }
 
 .remove-margin {
-  margin: 0;
+	margin: 0;
 }
 
 .remove-bottom-margin {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 body {
-  background-color: #f1f1f1
+	background-color: #f1f1f1
 }
