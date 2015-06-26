@@ -8,7 +8,7 @@ var AppConstants = require('../constants/AppConstants');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var _ = require('underscore');
 
-// additions 
+// additions
 var Firebase = require('firebase')
 var _ = require('underscore');  
 
@@ -21,6 +21,12 @@ var ref = new Firebase("https://newstestapp.firebaseio.com/");
 // STATES
 var submissionList = [];
 var submissionSelected;
+
+// user
+
+var uid;
+var username;
+
 // Options
 
 // Displatch functions
@@ -32,7 +38,7 @@ function setReviewItem(data){
   submissionSelected = data;
   var usersRef = ref.child("articles/"+data.id);
   usersRef.update({
-  "underReview": true
+    "underReview": true
   });
 }
 
@@ -40,7 +46,7 @@ function unassign(data){
   submissionSelected = undefined;
   var usersRef = ref.child("articles/"+data.id);
   usersRef.update({
-  "underReview": false
+    "underReview": false
   });
 }
 
@@ -93,11 +99,11 @@ function reject(data){
   
   var usersRef = ref.child("articles/"+data.id);
   usersRef.update({
-  "underReview": false,
-  "approvalOne": data.approvalOne,
-  "approvalTwo": data.approvalTwo,
-  "approvalThree": data.approvalThree,
-  "approved": data.approved
+    "underReview": false,
+    "approvalOne": data.approvalOne,
+    "approvalTwo": data.approvalTwo,
+    "approvalThree": data.approvalThree,
+    "approved": data.approved
   });
 }
 
@@ -114,6 +120,19 @@ var ReviewStore = assign({}, EventEmitter.prototype, {
     return {
       submissionList: submissionList,
       submissionSelected: submissionSelected
+    }
+  },
+  checkAuth: function(){
+    var authData = ref.getAuth();
+    if (authData) {
+      var getRef = ref.child("users");
+      getRef.child(authData.uid).once("value", function(dataSnapshot) {
+        var data = dataSnapshot.val();
+        username = data['username'];
+        uid = authData.uid;
+      });
+    } else {
+      window.location.href ="#/";
     }
   },
   emitChange: function() {

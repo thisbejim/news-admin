@@ -16,10 +16,12 @@ var _ = require('underscore');
 // config
 var ref = new Firebase("https://newstestapp.firebaseio.com/");
 
+
 // standard functions
 
 // STATES
 var username;
+var email;
 var password;
 var LogRegSelect = "Login";
 
@@ -30,6 +32,10 @@ function handleUsername(data){
   username = data;
 }
 
+function handleEmail(data){
+  email = data;
+}
+
 function handlePassword(data){
   password = data;
 }
@@ -38,13 +44,55 @@ function handleLoginSelect(){
  LogRegSelect = LogRegSelect == "Login" ? "Register" : "Login";
 }
 
+function login(email, password){
+  ref.authWithPassword({
+    email: email,
+    password: password
+  }, function(error, authData) {
+    if (error) {
+      console.log("Login Failed!", error);
+    } else {
+      console.log("Authenticated successfully with payload:", authData);
+      window.location.href ="#/submit";
+    }
+  });
+}
+
+function register(email, password, username){
+  ref.createUser({
+    email: email,
+    password: password
+  }, function(error, userData) {
+    if (error) {
+      console.log("Error creating user:", error);
+    } else {
+      var userRef = ref.child("users");
+      var uid = userData.uid;
+      userRef.child(uid).set({
+          username: username
+      });
+      console.log("Successfully created user account with uid:", userData.uid);
+      login(email, password);
+    }
+  });
+}
+
 // state fetchers
 var LoginStore = assign({}, EventEmitter.prototype, {
   getState: function() {
     return {
-      username: username,
+      email: email,
       password: password,
+      username: username,
       LogRegSelect: LogRegSelect,
+    }
+  },
+  checkAuth: function(){
+    var authData = ref.getAuth();
+    if (authData) {
+      window.location.href ="#/submit";
+    } else {
+      console.log("User is logged out");
     }
   },
   emitChange: function() {
@@ -70,16 +118,28 @@ var LoginStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
 
   switch(action.actionType) {
-    case AppConstants.HANDLE_USERNAME:
-      handleUsername(action.data);
+    case AppConstants.HANDLE_EMAIL:
+      handleEmail(action.data);
       LoginStore.emitChange();
       break;
     case AppConstants.HANDLE_PASSWORD:
       handlePassword(action.data);
       LoginStore.emitChange();
       break;
+    case AppConstants.HANDLE_USERNAME:
+      handleUsername(action.data);
+      LoginStore.emitChange();
+      break;
     case AppConstants.HANDLE_LOGIN_SELECT:
       handleLoginSelect();
+      LoginStore.emitChange();
+      break;
+    case AppConstants.LOGIN:
+      login(action.email, action.password);
+      LoginStore.emitChange();
+      break;
+    case AppConstants.REGISTER:
+      register(action.email, action.password, action.username);
       LoginStore.emitChange();
       break;
     default:

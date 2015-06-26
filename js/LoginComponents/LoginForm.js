@@ -6,7 +6,7 @@ var LoginActions = require('../actions/LoginActions');
 var LoginForm = React.createClass({
   mixins : [Router.Navigation],
   propTypes: {
-      username: React.PropTypes.string,
+      email: React.PropTypes.string,
       password: React.PropTypes.string,
   },
   render () {
@@ -29,9 +29,9 @@ var LoginForm = React.createClass({
       
           <div className="row">
             <div className="col-md-12">
-              <span style={style.font}>Username</span> 
+              <span style={style.font}>Email</span> 
               <div className="input-field remove-margin">
-                <input id="username" type="text" onChange={this._handleUsername} value={this.props.username} />
+                <input id="username" type="text" onChange={this._handleEmail} value={this.props.email} />
               </div>
             </div>
         </div>
@@ -47,7 +47,7 @@ var LoginForm = React.createClass({
       
       <div className="row">
           <div className="col-md-12 right-align">
-           <div className="waves-effect waves-light btn">Login</div>
+           <div className="waves-effect waves-light btn" onClick={this._handleLogin}>Login</div>
           </div>
         </div>
       
@@ -59,11 +59,14 @@ var LoginForm = React.createClass({
   </div>
     );
   },
-  _handleUsername: function(event){
-    LoginActions.handleUsername(event.target.value);
+  _handleEmail: function(event){
+    LoginActions.handleEmail(event.target.value);
   },
   _handlePassword: function(event){
     LoginActions.handlePassword(event.target.value);
+  },
+  _handleLogin: function(){
+    LoginActions.login(this.props.email, this.props.password);
   }
 });
 

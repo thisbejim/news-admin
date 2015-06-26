@@ -23,7 +23,10 @@ module.exports = keyMirror({
   HANDLE_CATEGORY_SELECT: null,
   
   //Login Constants
-  HANDLE_USERNAME: null,
+  HANDLE_EMAIL: null,
   HANDLE_PASSWORD: null,
-  HANDLE_LOGIN_SELECT: null
+  HANDLE_USERNAME: null,
+  HANDLE_LOGIN_SELECT: null,
+  LOGIN: null,
+  REGISTER: null,
 });

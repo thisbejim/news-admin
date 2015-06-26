@@ -10,15 +10,15 @@ var LoginRegisterSelect = React.createClass({
   mixins : [Router.Navigation],
   propTypes: {
       username: React.PropTypes.string,
+      email: React.PropTypes.string,
       password: React.PropTypes.string,
       selected: React.PropTypes.string
   },
   render () {
-    var selected = this.props.selected == "Login" ? <LoginForm username={this.props.username} password={this.props.password}/> : <RegisterForm username={this.props.username} password={this.props.password}/>;
+    var selected = this.props.selected == "Login" ? <LoginForm email={this.props.email} password={this.props.password}/> : <RegisterForm username={this.props.username} email={this.props.email} password={this.props.password}/>;
     var selectBtnText = this.props.selected == "Login" ? "New to news thing? Sign up!" : "Already have an account? Sign in.";
     var loginBtn = btn.active;
     
-    console.log(this.props.selected);
     return (
     <div className="row">
       <div className="col-md-12">

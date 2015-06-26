@@ -10,7 +10,7 @@ var _ = require('underscore');
 
 // additions
 var Firebase = require('firebase')
-var _ = require('underscore');  
+var _ = require('underscore');
 
 
 // config
@@ -36,7 +36,8 @@ AWSRef.once("value", function(data) {
   });
   s3 = new AWS.S3({params: {Bucket: AWS_Bucket}}); 
 });
- 
+
+
 
 // standard functions
 
@@ -49,7 +50,6 @@ function randomString(length, chars) {
 }
 
 
-
 // STATES
 
 // Options
@@ -57,11 +57,18 @@ var readyToSubmit = false;
 var articleType = "Standard";
 var imgAccepted = false;
 var articleCategory = "News";
+
 // Content
 var taglineText = ""
 var articleBodyText = "";
 var imgText = "Please upload an image with dimensions of 600x600 or more."
 var imgDisplay = "";
+
+// user
+
+var uid;
+var username;
+
 
 // dispatch functions
 function toggleReadyToSubmit() {
@@ -109,6 +116,7 @@ s3.putObject(params, function (perr, pres) {
         });
     
   var postsRef = ref.child("articles");
+  
   postsRef.push({
     tag_line: tagline,
     body_text: bodyText,
@@ -122,6 +130,8 @@ s3.putObject(params, function (perr, pres) {
     underReview: false,
     clicks: 0,
     articleCategory: articleCategory,
+    authorId: uid,
+    author: username
   });
 }
 
@@ -147,6 +157,19 @@ var AppStore = assign({}, EventEmitter.prototype, {
       imgText: imgText,
       imgDisplay: imgDisplay,
       articleCategory: articleCategory,
+    }
+  },
+  checkAuth: function(){
+    var authData = ref.getAuth();
+    if (authData) {
+      var getRef = ref.child("users");
+      getRef.child(authData.uid).once("value", function(dataSnapshot) {
+        var data = dataSnapshot.val();
+        username = data['username'];
+        uid = authData.uid;
+      });
+    } else {
+      window.location.href ="#/";
     }
   },
   emitChange: function() {

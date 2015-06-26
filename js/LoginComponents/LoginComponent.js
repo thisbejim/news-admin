@@ -17,6 +17,7 @@ var LoginComponent = React.createClass({
   },
   componentDidMount: function() {
     LoginStore.addChangeListener(this._onChange);
+    LoginStore.checkAuth();
   },
   componentWillUnmount: function() {
     LoginStore.removeChangeListener(this._onChange);
@@ -25,7 +26,7 @@ var LoginComponent = React.createClass({
     return (
     <div className="container">
       <div className="lg-blank-divide"></div>
-      <LoginRegisterSelect selected={this.state.LogRegSelect} username={this.state.username} password={this.state.password}/>
+      <LoginRegisterSelect selected={this.state.LogRegSelect} username={this.state.username} email={this.state.email} password={this.state.password}/>
     </div>
     );
   },

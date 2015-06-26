@@ -17,11 +17,12 @@ var Review = React.createClass({
   },
   componentDidMount: function() {
     ReviewStore.addChangeListener(this._onChange);
+    ReviewStore.checkAuth();
     Server.getSubmissions();
   },
   componentWillUnmount: function() {
     ReviewStore.removeChangeListener(this._onChange);
-  },  
+  },
   render () {
     var display;
     if (this.state.submissionSelected == undefined){

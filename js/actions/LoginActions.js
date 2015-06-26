@@ -6,6 +6,12 @@ var LoginActions = {
   /**
    * @param  {string} text
    */
+  handleEmail: function(data) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.HANDLE_EMAIL,
+      data: data
+    });
+  },
   handleUsername: function(data) {
     AppDispatcher.dispatch({
       actionType: AppConstants.HANDLE_USERNAME,
@@ -28,6 +34,21 @@ var LoginActions = {
       actionType: AppConstants.HANDLE_REGISTER_SELECT
     });
   },
+  login: function(email, password) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.LOGIN,
+      email: email,
+      password: password
+    });
+  },
+  register: function(email, password, username) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.REGISTER,
+      email: email,
+      password: password,
+      username: username
+    });
+  }
 };
 
 module.exports = LoginActions;

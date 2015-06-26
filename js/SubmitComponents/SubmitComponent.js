@@ -16,6 +16,7 @@ var Submit = React.createClass({
   },
   componentDidMount: function() {
     SubmitStore.addChangeListener(this._onChange);
+    SubmitStore.checkAuth();
   },
   componentWillUnmount: function() {
     SubmitStore.removeChangeListener(this._onChange);

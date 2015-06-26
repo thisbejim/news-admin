@@ -167,7 +167,6 @@ var Standard = React.createClass({
     if (this.props.readyToSubmit == true){
       console.log(this.props.imgDisplay);
       SubmitActions.submitArticle(this.props.articleBodyText, this.props.taglineText, this.props.imgDisplay, this.props.articleCategory);
-      this.transitionTo('/');
     }
   },
   _handleCategorySelect: function(event) {
